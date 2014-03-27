@@ -11,6 +11,18 @@ class Plane
 	end
 end
 
+class Rover
+	def initialize(strt_pos, orders)
+		@strt_pos = strt_pos
+		@orders = orders
+	end
+
+	def move
+		# accept an order and update that position of 
+		# the rover
+	end
+end
+
 # --- METHODS --- #
 
 # Asks for and returns top right coordinates 
@@ -28,11 +40,37 @@ def get_rov_pos
 	return gets.chomp.split(" ")
 end
 	
+# Asks user for rover movement commands
+# and returns a string of those commands	
 def get_orders
 	puts "Provide direction (ex: LMMRMLMRML)"
 	return gets.chomp.split("")
 end
 
-puts get_plane_coordinates
-puts get_rov_pos
-puts get_orders
+# --- Program Interaction Begins Here --- #
+plane_boundary = get_plane_coordinates
+
+# This could be done more concisely!
+rover1 = Rover.new(get_rov_pos, get_orders)
+rover2 = Rover.new(get_rov_pos, get_orders)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

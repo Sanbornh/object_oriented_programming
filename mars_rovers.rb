@@ -70,7 +70,7 @@ class Rover
 
 
 	def off_edge
-		if ($plane.get_top_edge == @wrking_pos[1] - 1) || ($plane.get_right_edge == @wrking_pos[0] - 1) || (@wrking_pos[0] == -1) || (@wrking_pos[1] == -1)
+		if ($plane.get_top_edge > @wrking_pos[1]) || ($plane.get_right_edge > @wrking_pos[0]) || (@wrking_pos[0] > -1) || (@wrking_pos[1] > -1)
 			return true
 		else
 			return false

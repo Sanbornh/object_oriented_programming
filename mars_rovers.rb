@@ -1,13 +1,21 @@
-# Define plane
-# Place Rovers
-# Give instructions to Rovers
-# Give final resting spot
+# Input plane size
+# Place startng positions of rovers
+# Give movement directions to rovers
+# Give final destination of rovers
 
 # --- CLASSES --- #
 class Plane
 	def initialize(coordinates)
-		@x = coordinates[0].to_i
-		@y = coordinates[1].to_i
+		@x = coordinates[0]
+		@y = coordinates[1]
+	end
+
+	def get_top_edge
+		return @y
+	end
+
+	def get_right_edge
+		return @x
 	end
 end
 
@@ -45,7 +53,11 @@ class Rover
 		@orders.each do |x|
 			if x == "M"
 				move_forward
-				#print @wrking_pos
+				if off_edge 
+					puts "You went off the edge and lost a rover" 
+					@wrking_pos = "Off the edge"
+					break
+				end
 			else
 				rotate_rover(x)
 			end
@@ -53,7 +65,16 @@ class Rover
 	end
 
 	def display_location
-		puts "Location: #{@wrking_pos}"
+		@wrking_pos
+	end
+
+
+	def off_edge
+		if ($plane.get_top_edge == @wrking_pos[1] - 1) || ($plane.get_right_edge == @wrking_pos[0] - 1) || (@wrking_pos[0] == -1) || (@wrking_pos[1] == -1)
+			return true
+		else
+			return false
+		end
 	end
 end
 
@@ -61,9 +82,13 @@ end
 
 # Asks for and returns top right coordinates 
 # for plane.
+# KLUDGE!!
 def get_plane_coordinates
 	puts "Define coordinates (x y)"
-	return gets.chomp.split(" ")
+	array = gets.chomp.split(" ")
+	array2 = []
+	array.each { |x| array2 << x.to_i }
+	return array2
 end
 
 # Asks for starting position of rover
@@ -84,7 +109,7 @@ def get_orders
 end
 
 # --- Program Interaction Begins Here --- #
-plane_boundary = get_plane_coordinates
+$plane = Plane.new(get_plane_coordinates)
 
 # This could be done more concisely!
 rover1 = Rover.new(get_rov_pos, get_orders)
@@ -93,8 +118,8 @@ rover2 = Rover.new(get_rov_pos, get_orders)
 rover1.resolve_movement
 rover2.resolve_movement
 
-rover1.display_location
-rover2.display_location
+puts "Rover 1 is at #{rover1.display_location}"
+puts "Rover 2 is at #{rover2.display_location}"
 
 
 

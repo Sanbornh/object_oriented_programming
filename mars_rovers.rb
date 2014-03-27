@@ -19,7 +19,6 @@ class Rover
 		until @directions[0] == @wrking_pos[2]
 			@directions.rotate!
 		end
-		print @directions
 	end
 
 	def move_forward
@@ -52,6 +51,10 @@ class Rover
 			end
 		end
 	end
+
+	def display_location
+		puts "Location: #{@wrking_pos}"
+	end
 end
 
 # --- METHODS --- #
@@ -81,13 +84,19 @@ def get_orders
 end
 
 # --- Program Interaction Begins Here --- #
-# plane_boundary = get_plane_coordinates
+plane_boundary = get_plane_coordinates
 
 # This could be done more concisely!
 rover1 = Rover.new(get_rov_pos, get_orders)
-# rover2 = Rover.new(get_rov_pos, get_orders)
+rover2 = Rover.new(get_rov_pos, get_orders)
 
 rover1.resolve_movement
+rover2.resolve_movement
+
+rover1.display_location
+rover2.display_location
+
+
 
 
 

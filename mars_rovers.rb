@@ -13,13 +13,35 @@ end
 
 class Rover
 	def initialize(strt_pos, orders)
-		@strt_pos = strt_pos
+		@wrking_pos = strt_pos
 		@orders = orders
 	end
 
-	def move
-		# accept an order and update that position of 
-		# the rover
+	def move_forward
+		if @wrking_pos[2] == "N"
+			@wrking_pos[1] += 1
+		elsif @wrking_pos[2] == "W"
+			@wrking_pos[0] -= 1 
+		elsif @wrking_pos[2] == "S"
+			@wrking_pos[1] -= 1
+		else 
+			@wrking_pos[0] += 1
+		end
+	end
+
+	# def change_dir(direction)
+	# 	if direction == "L"
+
+
+	# end
+
+	def resolve_movement
+		@orders.each do |x|
+			if x == "M"
+				puts move_forward
+				print @wrking_pos
+			end
+		end
 	end
 end
 
@@ -37,7 +59,9 @@ end
 # it's facing
 def get_rov_pos
 	puts "Enter rover starting position (x y d)"
-	return gets.chomp.split(" ")
+	pos = gets.chomp.split(" ")
+	0.upto(1) { |x| pos[x] = pos[x].to_i }
+	return pos
 end
 	
 # Asks user for rover movement commands
@@ -48,11 +72,13 @@ def get_orders
 end
 
 # --- Program Interaction Begins Here --- #
-plane_boundary = get_plane_coordinates
+# plane_boundary = get_plane_coordinates
 
 # This could be done more concisely!
 rover1 = Rover.new(get_rov_pos, get_orders)
-rover2 = Rover.new(get_rov_pos, get_orders)
+# rover2 = Rover.new(get_rov_pos, get_orders)
+
+rover1.resolve_movement
 
 
 

@@ -20,6 +20,9 @@ class Plane
 end
 
 class Rover
+
+	attr_accessor :wrking_pos
+
 	def initialize(strt_pos, orders)
 		@wrking_pos = strt_pos
 		@orders = orders
@@ -35,7 +38,7 @@ class Rover
 		elsif @wrking_pos[2] == "W"
 			@wrking_pos[0] -= 1 
 		elsif @wrking_pos[2] == "S"
-			@wrking_pos[1] -= 1
+			@wrking_pos[1] -= 1 
 		else 
 			@wrking_pos[0] += 1
 		end
@@ -63,11 +66,6 @@ class Rover
 			end
 		end
 	end
-
-	def display_location
-		@wrking_pos
-	end
-
 
 	def off_edge
 		if ($plane.get_top_edge > @wrking_pos[1]) || ($plane.get_right_edge > @wrking_pos[0]) || (@wrking_pos[0] > -1) || (@wrking_pos[1] > -1)
@@ -118,8 +116,8 @@ rover2 = Rover.new(get_rov_pos, get_orders)
 rover1.resolve_movement
 rover2.resolve_movement
 
-puts "Rover 1 is at #{rover1.display_location}"
-puts "Rover 2 is at #{rover2.display_location}"
+puts "Rover 1 is at #{rover1.wrking_pos}"
+puts "Rover 2 is at #{rover2.wrking_pos}" 
 
 
 

@@ -15,6 +15,11 @@ class Rover
 	def initialize(strt_pos, orders)
 		@wrking_pos = strt_pos
 		@orders = orders
+		@directions = ["N", "E", "S", "W"]
+		until @directions[0] == @wrking_pos[2]
+			@directions.rotate!
+		end
+		print @directions
 	end
 
 	def move_forward
@@ -29,17 +34,21 @@ class Rover
 		end
 	end
 
-	# def change_dir(direction)
-	# 	if direction == "L"
-
-
-	# end
+	def rotate_rover(direction)
+		if direction == "L"
+			@wrking_pos[2] = @directions.rotate!(-1)[0]
+		else 
+			@wrking_pos[2] = @directions.rotate!(1)[0]
+		end
+	end
 
 	def resolve_movement
 		@orders.each do |x|
 			if x == "M"
-				puts move_forward
-				print @wrking_pos
+				move_forward
+				#print @wrking_pos
+			else
+				rotate_rover(x)
 			end
 		end
 	end

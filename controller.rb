@@ -1,5 +1,7 @@
 require './parser.rb'
-
+require './items'
+require './cart'
+require './receipt'
 
 class Controller
 
@@ -8,26 +10,35 @@ class Controller
 	def initialize
 		@parser = Parser.new
 		@list_items = []
+		@cart = Cart.new
 	end
 
 	def input
-		puts "Input List (when done, enter D):"
+		puts "Input List (when done, press D):"
 		while @list_items[-1] != "D"
-			@list_items << @parser.parse(gets.chomp.upcase)
+			user_response = gets.chomp.upcase
+			if user_response == "D"
+				# binding.pry
+				get_receipt
+			else
+					# binding.pry	
+					user_response = @parser.parse(user_response)
+					user_response[:number].times do |i|
+					item = Item.new(user_response)
+					@cart.items_in_cart << item
+				end
+			end
 		end
 	end
 
-
+	def get_receipt
+		receipt = Receipt.new(@cart)
+		receipt.generate_receipt
+	end
 end
 
-# parser = Parser.new
-
-# puts parser.parse "1 book at 9.99 imported basic tax exempt"
-# puts parser.parse "2 chocolate bar at 1.99 basic tax exempt"
-# puts parser.parse "3 blue water bottle at 10"
 
 
 controller = Controller.new
 controller.input
-puts controller.list_items
-	
+puts controller.list_items 

@@ -24,9 +24,9 @@ class Parser
 	def parse(list_entry)
 		array = list_entry.split(" ")
 		if array[0] == "D" 
-			return "D"
+			return "D" 
 		else
-			@attributes[:number] = array[0]
+			@attributes[:number] = array[0].to_i
 			@attributes[:price] = array[array.index("AT") + 1]
 			@attributes[:object] = array[1..array.index("AT") - 1].join(" ")
 			if array.include?("IMPORTED") 

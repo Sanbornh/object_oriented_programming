@@ -1,25 +1,33 @@
-require './parser'
+require './parser.rb'
 
 
 class Controller
 
-	attr_accessor :input_array
+	attr_accessor :list_items
 
 	def initialize
-		parser = Parser.new
-		@input_array = []
+		@parser = Parser.new
+		@list_items = []
 	end
 
 	def input
 		puts "Input List (when done, enter D):"
-		while input_array[-1] != "D"
-			@input_array << gets.chomp.upcase
+		while @list_items[-1] != "D"
+			@list_items << @parser.parse(gets.chomp.upcase)
 		end
 	end
 
+
 end
+
+# parser = Parser.new
+
+# puts parser.parse "1 book at 9.99 imported basic tax exempt"
+# puts parser.parse "2 chocolate bar at 1.99 basic tax exempt"
+# puts parser.parse "3 blue water bottle at 10"
+
 
 controller = Controller.new
 controller.input
-puts "spot 1: #{controller.input_array[0]}"
-puts "spot 2: #{controller.input_array[1]}"
+puts controller.list_items
+	

@@ -23,25 +23,29 @@ class Parser
 
 	def parse(list_entry)
 		array = list_entry.split(" ")
-		@attributes[:number] = array[0]
-		@attributes[:price] = array[array.index("at") + 1]
-		@attributes[:object] = array[1..array.index("at") - 1].join(" ")
-		if array.include?("imported") 
-			@attributes[:imported] = true 
+		if array[0] == "D" 
+			return "D"
 		else
-			@attributes[:imported] = false
-		end
+			@attributes[:number] = array[0]
+			@attributes[:price] = array[array.index("AT") + 1]
+			@attributes[:object] = array[1..array.index("AT") - 1].join(" ")
+			if array.include?("IMPORTED") 
+				@attributes[:imported] = true 
+			else
+				@attributes[:imported] = false
+			end
 
-		if array.include?("exempt")
-			@attributes[:basic_tax_exempt] = true
-		else 
-			@attributes[:basic_tax_exempt] = false
+			if array.include?("EXEMPT")
+				@attributes[:basic_tax_exempt] = true
+			else 
+				@attributes[:basic_tax_exempt] = false
+			end
+			return @attributes
 		end
-		return @attributes
 	end
 end
 
-#parser = Parser.new
+# parser = Parser.new
 
 # Uncomment these to see how Parser will parse
 # puts parser.parse "1 book at 9.99 imported basic tax exempt"

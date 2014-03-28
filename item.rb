@@ -1,12 +1,12 @@
 class Item
 
-	attr_accessor :price, :name, :imported, :tax_exempt
+	attr_accessor :price, :name, :import_tax, :reg_exempt
 
-	def initialize(price, name, imported, tax_exempt)
-		@price = price.to_f
-		@name = name
-		@imported = imported
-		@tax_exempt = tax_exempt
+	def initialize(attributes)
+		@price = attributes[0].to_f
+		@name = attributes[1]
+		@import_tax = attributes[2]
+		@reg_tax = attributes[3]
 	end
 end
 

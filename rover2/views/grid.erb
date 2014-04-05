@@ -1,0 +1,18 @@
+<% content_for :header_content do %>
+
+     <div class="instructions">Click on a grid location to deploy your rover</div>
+
+<% end %>
+
+
+<% content_for :main_content do %>
+	<table>
+    <% 1.upto(3) do |y| %>
+        <tr> 
+            <% 1.upto(7) do |x| %>
+                <td><div class="inner <%= "#{x}#{y}" %>"></div></td>
+            <% end %>
+        </tr>
+    <% end %>
+  </table>
+<% end %>

@@ -1,0 +1,14 @@
+<% content_for :header_content do %>
+
+     <div class="instructions">Welcome to Mars Rover 2.0. Enter a grid size below. Try to keep it between (2,2) and (9,9) so the program doesn't blow up.</div>
+
+<% end %>
+
+
+<% content_for :main_content do %>
+     <form action="/" method="post">
+        X: <input type="text" name="x"> 
+        Y: <input type="text" name="y">
+           <input id="button" type="submit" name="Submit" value="ENTER">
+    </form>
+<% end %>

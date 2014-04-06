@@ -7,10 +7,12 @@ get '/' do
 	erb :index	
 end
 
-post '/' do 
-	binding.pry
+post '/grid' do 
+	@x = params[:x].to_i
+	@y = params[:y].to_i
+	erb :grid
 end
 
-get '/grid' do	
-	erb :grid.erb
-end
+# get '/grid' do	
+# 	erb :grid
+# end

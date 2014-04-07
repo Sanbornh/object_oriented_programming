@@ -8,11 +8,14 @@ get '/' do
 end
 
 post '/grid' do 
-	@x = params[:x].to_i
-	@y = params[:y].to_i
+	@@x = params[:x].to_i
+	@@y = params[:y].to_i
 	erb :grid
 end
 
-# get '/grid' do	
-# 	erb :grid
-# end
+post '/grid/rover' do
+	coords = params[:coords].split("")
+	@rover_x = coords[0].to_i
+	@rover_y = coords[1].to_i
+	erb :grid2	
+end

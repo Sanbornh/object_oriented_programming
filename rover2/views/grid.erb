@@ -6,13 +6,16 @@
 
 
 <% content_for :main_content do %>
+<form action="/grid/rover" method="POST">
 	<table>
-    <% 1.upto(@y) do |y| %>
+    <% 1.upto(@@y) do |y| %>
         <tr> 
-            <% 1.upto(@x) do |x| %>
-                <td><div class="inner <%= "#{x}#{y}" %>"></div></td>
+            <% 1.upto(@@x) do |x| %>
+                <td><button class="inner" type="submit" name="coords" value="<%= "#{x}#{y}" %>"><div class="<%= "#{x}#{y}" %>"></div></button></td>
             <% end %>
         </tr>
     <% end %>
   </table>
+ </form>
 <% end %>
+

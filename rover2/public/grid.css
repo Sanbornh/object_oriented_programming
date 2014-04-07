@@ -467,7 +467,7 @@ td {
     height: 50px;
 }
 
-.inner {
+.inner, button {
     margin: 5px;
     border-radius: 100%;
     height: 30px;
@@ -476,7 +476,7 @@ td {
     
 }
 
-form {
+.coordsinput {
     margin-left: auto;
     margin-right: auto;
     max-width: 90px;
@@ -498,6 +498,20 @@ input {
 #button:hover {
     background-color: #EB7F00;  
     color: #F3FFE2;
+}
+
+.rover {
+  background-color: #EB7F00;
+}
+
+.instructionsinput {
+  background-color: #1695A3;
+  width: 160px;
+}
+
+.instructions {
+  max-width: 350px;
+
 }
 
 

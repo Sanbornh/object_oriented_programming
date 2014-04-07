@@ -1,0 +1,31 @@
+<% content_for :header_content do %>
+
+     <div class="instructions">
+        <form class="coordsinput" action="/rover/final" method="post">
+          Enter instructions: <input class="instructionsinput" type="text" name="instructions"> 
+          <input id="button" type="submit" name="Submit" value="ENTER">
+        </form>
+      </div>
+
+<% end %>
+
+
+<% content_for :main_content do %>
+<form action="/grid/rover" method="POST">
+	<table>
+    <% 1.upto(@@y) do |y| %>
+        <tr> 
+            <% 1.upto(@@x) do |x| %>
+                <% if (x == @rover_x) && (y == @rover_y) then
+                  @class = "rover"
+                  else
+                  @class = "empty"
+                  end %>
+                <td><button class="inner <%= "#{@class}" %>" type="submit" name="coords" value="<%= "#{x}#{y}" %>"><div></div></button></td>
+            <% end %>
+        </tr>
+    <% end %>
+  </table>
+ </form>
+<% end %>
+
